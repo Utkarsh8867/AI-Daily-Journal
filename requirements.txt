@@ -1,5 +1,0 @@
-dantalabs
-python-dotenv
-fastapi
-uvicorn
-pydantic
