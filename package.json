@@ -1,0 +1,27 @@
+{
+    "name": "ai-daily-journal",
+    "version": "1.0.0",
+    "description": "AI-powered daily journaling assistant",
+    "main": "index.js",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "agent": "python backend/journal_agent.py"
+    },
+    "dependencies": {
+        "axios": "^1.6.0",
+        "date-fns": "^2.30.0",
+        "framer-motion": "^10.18.0",
+        "next": "^14.0.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "recharts": "^2.8.0",
+        "sqlite3": "^5.1.6"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/react": "^18.0.0",
+        "typescript": "^5.0.0"
+    }
+}
