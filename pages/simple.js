@@ -9,7 +9,7 @@ export default function SimpleJournal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     if (!entryText.trim()) {
       setError('Please write something in your journal entry')
       return
@@ -32,7 +32,7 @@ export default function SimpleJournal() {
       })
 
       console.log('Response status:', response.status)
-      
+
       if (!response.ok) {
         const errorText = await response.text()
         throw new Error(`Server error: ${response.status} - ${errorText}`)
@@ -58,6 +58,9 @@ export default function SimpleJournal() {
 
   const loadEntries = async () => {
     try {
+      // Only load entries on client side
+      if (typeof window === 'undefined') return
+
       const response = await fetch('/api/journal/entries')
       if (response.ok) {
         const data = await response.json()
@@ -76,13 +79,13 @@ export default function SimpleJournal() {
   }
 
   // Load entries on component mount
-  useState(() => {
+  useEffect(() => {
     loadEntries()
   }, [])
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
+    <div style={{
+      minHeight: '100vh',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       padding: '20px'
     }}>
@@ -109,7 +112,7 @@ export default function SimpleJournal() {
               <h2 style={{ marginBottom: '20px', color: '#333' }}>
                 How was your day? 💭
               </h2>
-              
+
               <form onSubmit={handleSubmit}>
                 <textarea
                   value={entryText}
@@ -127,14 +130,14 @@ export default function SimpleJournal() {
                     fontFamily: 'inherit'
                   }}
                 />
-                
+
                 <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <small style={{ color: '#666' }}>
                     {entryText.length} characters
                   </small>
-                  
-                  <button 
-                    type="submit" 
+
+                  <button
+                    type="submit"
                     disabled={isProcessing || !entryText.trim()}
                     style={{
                       background: isProcessing ? '#ccc' : '#667eea',
@@ -152,7 +155,7 @@ export default function SimpleJournal() {
               </form>
 
               {error && (
-                <div style={{ 
+                <div style={{
                   marginTop: '16px',
                   background: '#fef2f2',
                   color: '#dc2626',
@@ -208,7 +211,7 @@ export default function SimpleJournal() {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={handleNewEntry}
                 style={{
                   background: '#667eea',
@@ -238,7 +241,7 @@ export default function SimpleJournal() {
             <h2 style={{ color: '#333', marginBottom: '20px' }}>
               📚 Recent Entries ({entries.length})
             </h2>
-            
+
             {entries.slice(0, 3).map((entry, index) => (
               <div key={entry.id} style={{
                 borderBottom: index < 2 ? '1px solid #eee' : 'none',
