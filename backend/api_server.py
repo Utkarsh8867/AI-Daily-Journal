@@ -179,6 +179,10 @@ async def get_goals():
 async def root():
     return {"message": "AI Journal API is running! 🚀"}
 
+# Vercel serverless handler
+def handler(request, context):
+    return app
+
 if __name__ == "__main__":
     import uvicorn
     print("🚀 Starting AI Journal API server...")
