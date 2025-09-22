@@ -454,4 +454,4 @@ The application is not just a technical demonstration—it's a complete, product
 
 ---
 
-**Built with ❤️ for Maestro Hackathon 2024**
+**Built with ❤️ for Maestro Hackathon 2025**
